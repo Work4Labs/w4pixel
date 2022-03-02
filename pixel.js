@@ -47,7 +47,7 @@
     function init(window) {
         if (window.w4tr) { return }
         window.w4tr = {}
-        w4tr.track = function (eventId, eventName, ref) {
+        w4tr.track = function (eventName, ref, eventId="") {
             setTimeout(do_track(eventId, eventName, ref), 0)
         }
         var pairs = location.search.slice(1).split('&');
