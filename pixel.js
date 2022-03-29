@@ -20,9 +20,10 @@
             w4tr.work4_prefix_params = JSON.stringify(params);
         }
     }
-    function do_track(eventId, eventName, ref) {
+    function do_track(eventId, eventName, eventData, ref) {
         ref = ref.toString();
         upsertParams({
+            ...eventData,
             "url": location.toString().replace(location.search, ""),
         });
         params = getParams();
@@ -47,8 +48,8 @@
     function init(window) {
         if (window.w4tr) { return }
         window.w4tr = {}
-        w4tr.track = function (eventName, ref, eventId="") {
-            setTimeout(do_track(eventId, eventName, ref), 0)
+        w4tr.track = function (eventName, ref, eventId="", eventData={}) {
+            setTimeout(do_track(eventId, eventName, eventData, ref), 0)
         }
         var pairs = location.search.slice(1).split('&');
 
